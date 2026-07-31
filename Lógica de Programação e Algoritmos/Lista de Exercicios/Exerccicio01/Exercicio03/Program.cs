@@ -14,30 +14,32 @@ try
 
     // Processamento de dados
     salariobruto = vhora * qhora;
-    inss = salariobruto - (10 / 100);
-    fgts = salariobruto + (11 / 100);
+    inss = salariobruto * 0.10;
+    fgts = salariobruto * 0.11;
+
+    Console.WriteLine($"Salário Bruto: R$ {salariobruto:f2}");
 
 
-
-    if ((salariobruto < 900) || (salariobruto == 900))
+    if (salariobruto <= 900)
     {
         ir = 0;
-        descontoIr = salariobruto * (ir/100);
+        descontoIr = salariobruto * (ir / 100);
+        IR_Zero();
 
     }
-else if((salariobruto < 1500) || (salariobruto == 1500))
-        {
+    else if (salariobruto <= 1500)
+    {
         ir = 5;
-        descontoIr = salariobruto * (ir/100);
+        descontoIr = salariobruto * (ir / 100);
 
     }
-else if((salariobruto < 2500) || (salariobruto == 2500))
+    else if (salariobruto <= 2500)
     {
         ir = 10;
         descontoIr = salariobruto * (ir / 100);
 
     }
-else
+    else
     {
         ir = 20;
         descontoIr = salariobruto * (ir / 100);
@@ -46,23 +48,27 @@ else
     totaldesconto = descontoIr + inss;
 
     //Saída de dados
-    Console.WriteLine($"Salário Bruto: R$ {salariobruto:f2}");
-    Console.WriteLine($"Desconto do IR: R$ {descontoIr:f2}");
-    Console.WriteLine($"Desconto do INSS: R$ {inss:f2}");
-    Console.WriteLine($"Valor do FGTS: R$ {fgts:f2}");
+
+    Console.WriteLine($"(-) IR: ({ir}%) R$ {descontoIr:f2}");
+    Console.WriteLine($"(-) INSS (10%) R$ {inss:f2}");
+    Console.WriteLine($"FGTS (11%): R$ {fgts:f2}");
     Console.WriteLine($"Total de descontos: R$ {totaldesconto:f2}");
     Console.WriteLine($"Salário Líquido: R$ {ValorLiquido():f2}");
 }
- catch
+catch
 {
     Console.WriteLine("Valor inválido");
 }
 
 
-
 double ValorLiquido()
 {
-    salarioliquido = (salariobruto - descontoIr)- inss;
+    salarioliquido = salariobruto - totaldesconto;
     return salarioliquido;
 }
 
+void IR_Zero()
+{
+    Console.WriteLine($"(-) IR (Isento): R$ {descontoIr:f2}");
+}
+Console.ReadKey();
