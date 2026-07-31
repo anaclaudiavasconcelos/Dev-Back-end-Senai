@@ -9,13 +9,13 @@ try
 
 
     
-    if((salario < 280) || (salario == 280))
+    if(salario <= 280)
     {
         percentual = 20;
 
         reajuste = salario * (percentual / 100);
     }
-    else if((salario > 280) && (salario < 700))
+    else if((salario > 280) && (salario <= 700))
     {
         percentual = 15;
         reajuste = salario * (percentual / 100);
