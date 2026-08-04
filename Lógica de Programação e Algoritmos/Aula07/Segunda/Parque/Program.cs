@@ -10,8 +10,8 @@ try
 
     while (entrada != "sair")
     {
-        //Entrada de dados
-        Console.WriteLine("Veículo entrando, voltando ou sair para encerrar o expediente: ");
+       
+        Console.WriteLine("Digite veículo entrando, voltando ou sair para encerrar o expediente: ");
         entrada = Console.ReadLine();
         if(entrada == "sair")
         {
